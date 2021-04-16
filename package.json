@@ -1,0 +1,25 @@
+{
+  "name": "@chat/root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "scripts": {
+    "client:prod": "lerna exec --scope @chat/client -- yarn build",
+    "client:dev": "lerna exec --scope @chat/client -- yarn start",
+    "client:lint": "lerna exec --scope @chat/client -- yarn lint",
+    "client:format": "lerna exec --scope @chat/client -- yarn format",
+    "server": "lerna exec --scope @chat/server -- yarn start",
+    "runQuery": "lerna exec --scope @chat/server -- yarn runQuery",
+    "dev": "concurrently \"yarn run server\" \"yarn run client:dev\"",
+    "start": "node lib/server/start.js",
+    "heroku-postbuild": "YARN_CONFIG_PRODUCTION=false yarn run client:prod"
+  },
+  "engines": {
+    "node": "15.14.0",
+    "npm": "7.7.6"
+  },
+  "workspaces": {
+    "packages": [ "lib/**" ]
+  }
+}
