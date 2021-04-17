@@ -6,10 +6,14 @@ import { Tags } from '../tags';
 const { Chat } = Tags
 
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
-const SOCKET_SERVER_URL = process.env.NODE_ENV === 'production' ? "https://ts-socket-chat.herokuapp.com/" : "http://localhost:5120";
+const CLIENTS_CONNECTED_EVENT = "clientsConnectedEvent";
+const CLIENT_TYPING_EVENT = "clientTypingEvent";
+const SOCKET_SERVER_URL = process.env.host ? process.env.host : ""
 
 const useChat = (room: string) => {
   const [messages, setMessages] = useState<MessageInterface[]>([]);
+  const [noClients, setNoClients] = useState<number>(0);
+  const [typing, setTyping] = useState<boolean>(false);
   const socketRef = useRef<SocketIOClient.Socket>();
 
   const [ chat ] = useMutation(Chat.Mutations.chat)
@@ -27,6 +31,14 @@ const useChat = (room: string) => {
       query: { room },
     });
 
+    socketRef.current.on(CLIENTS_CONNECTED_EVENT, (noOfClients: number) => {
+      setNoClients(noOfClients)
+    });
+
+    socketRef.current.on(CLIENT_TYPING_EVENT, (status: boolean) => {
+      setTyping(status)
+    });
+
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message: MessageInterface) => {
       const messageObj = {
         ...message,
@@ -42,13 +54,19 @@ const useChat = (room: string) => {
     };
   }, [data, loading, room]);
 
+  const onType = (status: boolean) : void => {
+    if (socketRef.current) {
+      socketRef.current.emit(CLIENT_TYPING_EVENT, status)
+    }
+  }
+
   const sendMessage = (message: string) : void => {
     if (socketRef.current) {
       chat({
         variables: {
           sender: socketRef.current.id ? socketRef.current.id : null,
           message: message,
-          roomName: room,
+          roomName: room.toLowerCase(),
         },
       }).then((res) => {
         if (res.data.chat.success) {
@@ -64,7 +82,7 @@ const useChat = (room: string) => {
     }
   };
 
-  return { messages, sendMessage, loading };
+  return { messages, sendMessage, onType, loading, noClients, typing, setTyping };
 };
 
 export default useChat;

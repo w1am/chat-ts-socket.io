@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ReactLoading from 'react-loading';
 
 type Chat = {
   isOwner?: boolean
@@ -8,7 +7,7 @@ type Chat = {
 const MessageContainer = styled.div`
   padding: 10px 20px;
   overflow: auto;
-  flex-basis: 78vh;
+  flex-basis: 80vh;
   background: #EAEDF2;
 `
 const Chat = styled.p<Chat>`
@@ -30,20 +29,14 @@ const EmptyMessage = styled.p`
   line-height: 70vh; 
   color: #6d6d6d;
 `
-const LoadingContainer = styled(ReactLoading)`
-  text-align: center;
-  vertical-align: middle;
-  line-height: 78vh;
-`
-const LoadingParent = styled.div`
-  padding: 10px 20px;
-  overflow: auto;
-  flex-basis: 78vh;
-  background: #EAEDF2;
+const LoadingContainer = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `
 export const styles = {
   LoadingContainer,
-  LoadingParent,
   EmptyMessage,
   MessageBox: {
     Container: MessageContainer

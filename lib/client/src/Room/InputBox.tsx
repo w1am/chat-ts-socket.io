@@ -3,7 +3,7 @@ import { styles as s } from './styles'
 import TextField from './TextField'
 import { InputBoxProps } from '../interfaces'
 
-const InputBox = ({ sendMessage }: InputBoxProps) => {
+const InputBox = ({ sendMessage, onType }: InputBoxProps) => {
   const [ message, setMessage ] = useState("")
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement> | React.FormEvent<HTMLButtonElement>) : void => {
@@ -17,8 +17,10 @@ const InputBox = ({ sendMessage }: InputBoxProps) => {
 
   return (
     <s.Form onSubmit={handleSubmit}>
-      <TextField value={message} onChange={setMessage} />
-      <s.Input.Button type="submit" onClick={handleSubmit}>Send</s.Input.Button>
+      <TextField onType={onType} value={message} onChange={setMessage} />
+      <s.Input.Button type="submit" onClick={handleSubmit}>
+        Send
+      </s.Input.Button>
     </s.Form>
   )
 }

@@ -18,6 +18,8 @@ export interface MessageProps {
 
 export interface InputBoxProps {
   sendMessage(message: string): void;
+  setTyping: (val: boolean) => void;
+  onType(status: boolean): void
 }
 
 export interface MatchParams {
@@ -34,6 +36,7 @@ export interface MatchProps extends RouteComponentProps<MatchParams> {
 export interface TextFieldProps {
   value: string;
   onChange: (val: string) => void;
+  onType(status: boolean): void;
   placeholder?: string;
   autoFocus?: boolean;
   name?: string;

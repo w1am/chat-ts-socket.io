@@ -21,7 +21,8 @@ const HeaderContainer = styled.div`
 `
 const Quote = styled.h1`
   color: white;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', 'Arial';
+  font-weight: 800;
   @media (max-width: 610px) {
     font-size: 25px;
   };
@@ -29,7 +30,7 @@ const Quote = styled.h1`
 const Logo = styled.img.attrs({ src: LOGO })`
 `
 const SearchBar = styled.input`
-  padding: 20px;
+  padding: 15px 20px;
   font-size: 20px;
   border: 8px solid #D6D6D6;
   border-radius: 100px;

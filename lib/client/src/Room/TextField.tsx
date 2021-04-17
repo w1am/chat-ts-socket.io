@@ -3,7 +3,7 @@ import { TextFieldProps } from "../interfaces";
 import { styles } from './styles';
 const { Input } = styles;
 
-const TextField = ({ onChange, ...rest }: TextFieldProps) => {
+const TextField = ({ onChange, onType, ...rest }: TextFieldProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -12,11 +12,19 @@ const TextField = ({ onChange, ...rest }: TextFieldProps) => {
     }
   }, [])
 
+  const typer = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    onChange(e.target.value)
+    onType(true)
+    setTimeout(() => {
+      onType(false)
+    }, 2000)
+  }
+
   return (
     <Input.TextArea
       ref={inputRef}
       placeholder="Say something"
-      onChange={({ target: { value } }) => onChange(value)}
+      onChange={(e) => typer(e)}
       {...rest}
     />
   );
