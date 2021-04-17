@@ -8,7 +8,10 @@ const { Chat } = Tags
 const NEW_CHAT_MESSAGE_EVENT = "newChatMessage";
 const CLIENTS_CONNECTED_EVENT = "clientsConnectedEvent";
 const CLIENT_TYPING_EVENT = "clientTypingEvent";
-const SOCKET_SERVER_URL = process.env.host ? process.env.host : ""
+const SOCKET_SERVER_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://ts-socket-chat.herokuapp.com/'
+    : 'http://localhost:5120'
 
 const useChat = (room: string) => {
   const [messages, setMessages] = useState<MessageInterface[]>([]);
