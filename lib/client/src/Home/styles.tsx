@@ -26,6 +26,9 @@ const Quote = styled.h1`
   @media (max-width: 610px) {
     font-size: 25px;
   };
+  @media (max-width: 380px) {
+    font-size: 22px;
+  };
 `
 const Logo = styled.img.attrs({ src: LOGO })`
 `
@@ -47,6 +50,16 @@ const SearchBar = styled.input`
   @media (max-width: 610px) {
     width: 380px;
     padding: 15px 10px;
+  };
+  @media (max-width: 418px) {
+    width: 320px;
+    padding: 15px 10px;
+    font-size: 16px;
+  };
+  @media (max-width: 344px) {
+    width: 300px;
+    padding: 15px 10px;
+    font-size: 16px;
   };
 `
 const SearchButton = styled.input.attrs({ type: "submit", value:"GO" })`
@@ -73,6 +86,11 @@ const SearchButton = styled.input.attrs({ type: "submit", value:"GO" })`
   @media (max-width: 610px) {
     width: 150px;
     padding: 10px;
+  };
+  @media (max-width: 380px) {
+    width: 120px;
+    padding: 10px;
+    font-size: 14px;
   };
 `
 const MenuContainer = styled.div`

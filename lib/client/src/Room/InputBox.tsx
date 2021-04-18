@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { styles as s } from './styles'
 import TextField from './TextField'
 import { InputBoxProps } from '../interfaces'
+import { AiOutlineSend as Send } from 'react-icons/ai'
 
 const InputBox = ({ sendMessage, onType }: InputBoxProps) => {
   const [ message, setMessage ] = useState("")
@@ -19,7 +20,7 @@ const InputBox = ({ sendMessage, onType }: InputBoxProps) => {
     <s.Form onSubmit={handleSubmit}>
       <TextField onType={onType} value={message} onChange={setMessage} />
       <s.Input.Button type="submit" onClick={handleSubmit}>
-        Send
+        <Send />
       </s.Input.Button>
     </s.Form>
   )

@@ -5,7 +5,10 @@ const Message = (props: MessageProps) => {
   const message : MessageInterface = props.message
   const condition: boolean = message.sender == message.currentUser
   return (
-    <s.Chat isOwner={condition}>{message.message}</s.Chat>
+    <s.Chat isOwner={condition}>
+      <s.Message>{message.message}</s.Message>
+      <s.Time>{message.time}</s.Time>
+    </s.Chat>
   )
 }
 

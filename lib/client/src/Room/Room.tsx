@@ -10,7 +10,6 @@ const { Header, Container } = s
 const Room = ({ match }: MatchProps) => {
   const room = match.params.room
   const { messages, sendMessage, loading, noClients, typing, setTyping, onType } = useMessage(room)
-  console.log(typing)
   return (
     <Container>
       <Header.Container>

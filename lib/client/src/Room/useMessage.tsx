@@ -77,6 +77,7 @@ const useChat = (room: string) => {
             socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
               chat_id: res.data.chat.data.chat_id,
               message,
+              time: res.data.chat.data.time,
               sender: socketRef.current.id ? socketRef.current.id : null,
             })
           }

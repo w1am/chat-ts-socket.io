@@ -9,6 +9,7 @@ const GET_CHATS = gql`
         chat_id
         sender
         message
+        time
       }
     }
   }
@@ -23,6 +24,7 @@ const CHAT = gql`
         chat_id
         sender
         message
+        time
       }
     }
   }

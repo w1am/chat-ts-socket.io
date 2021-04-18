@@ -4,6 +4,7 @@ export interface MessageInterface {
   chat_id: string;
   message: string;
   sender: string;
+  time: string;
   currentUser: string | null;
 }
 
